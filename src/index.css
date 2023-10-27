@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply border text-center whitespace-nowrap font-medium select-none py-2 px-4 rounded;
+    }
+    .btn-primary {
+        @apply bg-primary border-primary text-white
+    }
+    .btn-outline-primary {
+        @apply bg-transparent bg-none border-primary text-primary
+    }
+    .btn-outline-white {
+        @apply bg-transparent bg-none border-white text-white
+    }
+}
