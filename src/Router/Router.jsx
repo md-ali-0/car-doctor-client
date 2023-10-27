@@ -4,6 +4,7 @@ import Login from "../Pages/Auth/Login";
 import SignUp from "../Pages/Auth/SignUp";
 import Checkout from "../Pages/Checkout/Checkout";
 import Home from "../Pages/Home/Home";
+import PrivateRouter from "./PrivateRouter";
 
 const Router = createBrowserRouter([
     {
@@ -16,7 +17,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/checkout',
-                element: <Checkout/>
+                element: <PrivateRouter><Checkout/></PrivateRouter>
             },
             {
                 path: '/login',

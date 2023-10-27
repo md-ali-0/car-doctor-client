@@ -1,7 +1,34 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext";
 import loginImage from '/images/login/login.svg';
 const SignUp = () => {
+    const {createRegister, profileUpdate} = useContext(AuthContext);
+    const navigate = useNavigate()
+    const handleSignup = (e)=>{
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value
+        const email = form.email.value
+        const password = form.password.value
+        console.log(name,email,password);
+        
+        createRegister(email, password)
+        .then(result=>{
+            console.log(result.user);
+            profileUpdate({displayName:name})
+            .then(()=>{
+                navigate('/')
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        })
+        .catch(err=>{
+            console.log(err.code);
+        })
+    }
     return (
         <div className="container mx-auto py-5 px-3">
             <div className="flex justify-evenly items-center gap-5">
@@ -11,7 +38,7 @@ const SignUp = () => {
                 
                 <div className="border rounded-xl p-5 w-1/2">
                     <h3 className='text-dark_02 text-4xl font-bold text-center'>Sign Up</h3>
-                    <form>
+                    <form onSubmit={handleSignup}>
                         <div className='py-2'>
                             <label className='block py-1.5' htmlFor="name">Name</label>
                             <input className='border outline-none rounded-lg px-3 py-2.5 w-full' type="text" name="name" id="name" placeholder='Your name'/>
