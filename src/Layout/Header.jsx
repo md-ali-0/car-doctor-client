@@ -31,7 +31,11 @@ const Header = () => {
                     <li>About</li>
                     <li>Services</li>
                     <li>Blog</li>
-                    <li>Contact</li>
+                    {
+                        user&&<li><NavLink to='/bookings' className={({ isActive }) =>
+                        isActive ? 'text-primary' : ''
+                    }>My Bookings</NavLink></li>
+                    }
                 </ul>
                 <div>
                     {user && <span className='text-xl font-medium text-dark_02 px-2'>{user.displayName}</span>}
